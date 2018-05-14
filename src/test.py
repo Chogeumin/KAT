@@ -15,14 +15,14 @@ def print_initial_message(width, message, ver):
 
 width = os.popen('stty size', 'r').read().split()[1]
 message = "\nKAT"
-ver = "1.001"
+ver = "testor"
 print_initial_message(width, message, ver)
 
 
 # 벡터 읽어오기
 size = int(sys.argv[1])
 file_name = "wv/" + str(size) + "vectors.bin"
-word_vectors = KeyedVectors.load_word2vec_format('wv/500vectors.bin', binary=True)
+word_vectors = KeyedVectors.load_word2vec_format(file_name, binary=True)
 
 while (True):
     # 인자 받는 부분
