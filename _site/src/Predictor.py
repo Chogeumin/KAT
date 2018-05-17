@@ -17,15 +17,12 @@ class Predictor:
         self.model = KeyedVectors.load_word2vec_format("data/vectors" + str(distinct) + ".bin", binary=True)
         self.label = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     
-    def top_rank(self, positive, negative, threshold): 
+    def top_rank(self, lecture, threshold): 
         """ top_rank function takes lecture name then find top 10 most similar using gensim library. If there exists lecture whichs similarity is under threshhold, then that lecture is thrown.
 
         Parameter
         ---------
-        positvie : list
-            source lecture name tokenized by Twitter.
-
-        negative : list
+        lecture : list
             source lecture name tokenized by Twitter.
 
         threshold : float
@@ -35,7 +32,7 @@ class Predictor:
         """
 
         lecture_list = []
-        for lecture in self.model.most_similar(positive=positive, negative=negative):
+        for lecture in self.model.most_similar(positive=lecture):
             if (lecture[1] >= threshold):
                 lecture_list.append(lecture)
         

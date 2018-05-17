@@ -9,7 +9,4 @@ if __name__ == "__main__":
     pred = Predictor(distinct=2)
     t = Twitter()
     positive = t.nouns(sys.argv[1])
-    negative = []
-    if (len(sys.argv) == 3):
-        negative = t.nouns(sys.argv[2])
-    print(pred.top_rank(positive=positive, negative=negative, threshold=0))
+    print(pred.top_rank(lecture=positive, threshold=0))
