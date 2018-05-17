@@ -107,9 +107,6 @@ ENV/
 .DS_Store
 
 # Unused folder
-compressed/
 parser/
-tmp/
 data/
-wv/
 corpus/
