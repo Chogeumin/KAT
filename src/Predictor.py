@@ -45,6 +45,7 @@ class Predictor:
         """
         clf = neighbors.KNeighborsClassifier(n_neighbors=len(lectures), weights='distance')
         clf.fit(lectures, scores)
+        
         score = clf.predict(target)[0]
 
         return score

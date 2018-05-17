@@ -22,18 +22,19 @@ class MySentences(object):
 
 class Lecture2Vec(object):
     """Class for build lecture vector.
-    In this version, you can only build lecture vectors at Hanyang University ERICA campus(hyu, erica).
+        In this version, you can only build lecture vectors at Hanyang University ERICA campus(hyu, erica).
 
-    Parameters
-    ----------
-    university : str
-        University Abbreviation. Default is "hyu"
+        Parameters
+        ----------
+        university : str
+            University Abbreviation. Default is "hyu"
 
-    campus : str
-        Campus name. Default is "erica"
+        campus : str
+            Campus name. Default is "erica"
 
 
     """
+    
     def __init__(self, university="hyu", campus="erica"):
         self.university = university
         self.campus = campus
@@ -50,12 +51,14 @@ class Lecture2Vec(object):
             Vector dimension. Please care to use. This parameter yields memory lack.
 
         """
-        vocab = MySentences(self.university + "/" + self.campus)
-        train = MySentences(corpus)
+        vocab = MySentences(corpus + "/" + self.university + "/" + self.campus)
+        train = MySentences(corpus + "/train")
+
         model = Word2Vec(size=size)
         model.build_vocab(sentences=vocab)
         model.train(sentences=train)
+
         word_vectors = model.wv
         del vocab, train, model
-        word_vectors.save_word2vec_format("wv/" + str(size) + "vectors.bin", binary=True)
 
+        word_vectors.save_word2vec_format("wv/" + str(size) + "vectors.bin", binary=True)
