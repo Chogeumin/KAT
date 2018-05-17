@@ -34,7 +34,7 @@ class Lecture2Vec(object):
 
 
     """
-    
+
     def __init__(self, university="hyu", campus="erica"):
         self.university = university
         self.campus = campus
@@ -54,11 +54,13 @@ class Lecture2Vec(object):
         vocab = MySentences(corpus + "/" + self.university + "/" + self.campus)
         train = MySentences(corpus + "/train")
 
-        model = Word2Vec(size=size)
+        model = Word2Vec(min_count=1)
         model.build_vocab(sentences=vocab)
-        model.train(sentences=train)
+        model.train(sentences=train,
+                    total_examples=model.corpus_count,
+                    epochs=model.iter)
 
         word_vectors = model.wv
         del vocab, train, model
 
-        word_vectors.save_word2vec_format("wv/" + str(size) + "vectors.bin", binary=True)
+        word_vectors.save_word2vec_format("data/vectors.bin", binary=True)

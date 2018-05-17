@@ -4,7 +4,7 @@ import numpy as np
 
 class Predictor:
     def __init__(self, model):
-        self.model = KeyedVectors.load_word2vec_format(model, binary=True)
+        self.model = KeyedVectors.load_word2vec_format("data/vectors.bin", binary=True)
         self.label = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
     
     def top_rank(self, lecture, threshold): 
