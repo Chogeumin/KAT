@@ -110,3 +110,5 @@ ENV/
 parser/
 data/
 corpus/
+prac/
+log/
