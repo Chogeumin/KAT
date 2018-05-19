@@ -112,3 +112,7 @@ data/
 corpus/
 prac/
 log/
+
+# No commit file
+src/Prepare.py
+src/Slack.py
