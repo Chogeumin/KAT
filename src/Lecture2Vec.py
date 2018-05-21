@@ -35,11 +35,7 @@ class Lecture2Vec(object):
 
     """
 
-    def __init__(self, university, campus):
-        self.university = university
-        self.campus = campus
-
-    def build(self, corpus, distinct):
+    def build(self, vocab, corpus, distinct):
         """Build lecture vector from corpus using word2vec in gensim library. corpus to make vocab and to train are different.
         
         Parameters
@@ -53,8 +49,8 @@ class Lecture2Vec(object):
 
         """
         if (distinct == 1):
-            vocab = MySentences(corpus + "/" + self.university + "/" + self.campus)
-            train = MySentences(corpus + "/train")
+            vocab = MySentences(vocab)
+            train = MySentences(corpus)
 
             model = Word2Vec(min_count=1)
             model.build_vocab(sentences=vocab)
