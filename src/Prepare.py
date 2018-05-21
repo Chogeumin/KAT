@@ -2,6 +2,7 @@ from konlpy.tag import Hannanum
 from konlpy.tag import Kkma
 from konlpy.tag import Twitter
 from konlpy.tag import Komoran
+from konlpy.tag import Mecab
 import glob, sys
 
 def kor_tokenize(tokenizer, indir, outdir):
@@ -31,7 +32,6 @@ def kor_tokenize(tokenizer, indir, outdir):
         file_cnt += 1
 
 if __name__ == '__main__':
-    print(sys.argv[1])
     if (sys.argv[1] == 'Kkma'):
         t = Kkma()
         print("Kkma")
@@ -44,6 +44,9 @@ if __name__ == '__main__':
     elif (sys.argv[1] == 'Twitter'):
         t = Twitter()
         print("Twitter")
+    elif (sys.argv[1] == 'Mecab'):
+        t = Mecab()
+        print("Mecab")
     kor_tokenize(t, 'corpus/namu/*', 'corpus/train/namu_')
     kor_tokenize(t, 'corpus/kowiki/*', 'corpus/train/kowiki_')
     kor_tokenize(t, 'corpus/univ/*', 'corpus/train/hyu_')
