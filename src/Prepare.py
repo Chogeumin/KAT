@@ -32,21 +32,22 @@ def kor_tokenize(tokenizer, indir, outdir):
         file_cnt += 1
 
 if __name__ == '__main__':
-    if (sys.argv[1] == 'Kkma'):
+    if (sys.argv[1] == 'Kkma'):         # 메모리 오버
         t = Kkma()
         print("Kkma")
-    elif (sys.argv[1] == 'Hannanum'):
+    elif (sys.argv[1] == 'Hannanum'):   # 메모리 문제 발생
         t = Hannanum()
         print("Hannanum")
-    elif (sys.argv[1] == 'Komoran'):
+    elif (sys.argv[1] == 'Komoran'):    # 메모리 오버
         t = Komoran()
         print("Komoran")
-    elif (sys.argv[1] == 'Twitter'):
+    elif (sys.argv[1] == 'Twitter'):    # 성공
         t = Twitter()
         print("Twitter")
-    elif (sys.argv[1] == 'Mecab'):
+    elif (sys.argv[1] == 'Mecab'):      # 성공
         t = Mecab()
         print("Mecab")
-    kor_tokenize(t, 'corpus/namu/*', 'corpus/train/namu_')
-    kor_tokenize(t, 'corpus/kowiki/*', 'corpus/train/kowiki_')
-    kor_tokenize(t, 'corpus/univ/*', 'corpus/train/hyu_')
+    # kor_tokenize(t, 'corpus/namu/*', 'corpus/train/namu_')
+    # kor_tokenize(t, 'corpus/kowiki/*', 'corpus/train/kowiki_')
+    # kor_tokenize(t, 'corpus/univ/*', 'corpus/train/hyu_')
+    kor_tokenize(t, 'corpus/name.txt', 'corpus/vocab/'+sys.argv[1])

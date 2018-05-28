@@ -3,7 +3,7 @@ from sklearn import neighbors
 import numpy as np
 
 class Predictor:
-    def __init__(self, distinct):
+    def __init__(self, name):
         """ Using Predictor class, you can get at most 10 top rank which is consine similiarty over threshold. Futhermore, can predict similar lecture using kNN
 
         Parameter
@@ -14,7 +14,7 @@ class Predictor:
             
         """
 
-        self.model = KeyedVectors.load_word2vec_format("data/vectors" + str(distinct) + ".bin", binary=True)
+        self.model = KeyedVectors.load_word2vec_format(name, binary=True)
         self.label = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     
     def top_rank(self, positive, negative, threshold): 

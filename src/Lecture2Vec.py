@@ -35,7 +35,7 @@ class Lecture2Vec(object):
 
     """
 
-    def build(self, vocab, corpus, distinct):
+    def build(self, vocab, corpus, distinct, name):
         """Build lecture vector from corpus using word2vec in gensim library. corpus to make vocab and to train are different.
         
         Parameters
@@ -48,7 +48,7 @@ class Lecture2Vec(object):
             if distinct is 0, train corpus and vocabulary corpus is same.
 
         """
-        if (distinct == 1):
+        if (distinct == True):
             vocab = MySentences(vocab)
             train = MySentences(corpus)
 
@@ -59,16 +59,13 @@ class Lecture2Vec(object):
                         epochs=model.iter)
 
             word_vectors = model.wv
-            del vocab, train, model
+        elif (distinct == False):
+            vocab = []
+            train = MySentences(corpus)
 
-            word_vectors.save_word2vec_format("data/vectors1.bin", binary=True)
-
-        if (distinct == 0):
-            sentences = MySentences(corpus)
-
-            model = Word2Vec(sentences=sentences)
+            model = Word2Vec(sentences=train)
 
             word_vectors = model.wv
-            del sentences, model
 
-            word_vectors.save_word2vec_format("data/vectors0.bin", binary=True)        
+        del vocab, train, model
+        word_vectors.save_word2vec_format(name, binary=True)
