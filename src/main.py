@@ -15,7 +15,6 @@ if __name__ == "__main__":
     parser.add_argument('-n', '--name', type=str, default='data/word_vector.bin', help="워드벡터 저장 위치 data/<binary file name>.bin")
     args = parser.parse_args()
 
-
     print("\nparser statement")
     print("build:\t", args.build)
     print("vocab:\t", args.vocab)
@@ -30,11 +29,6 @@ if __name__ == "__main__":
         print("Build Model")
         model = Lecture2Vec()
         model.build(vocab=args.vocab, corpus=args.corpus, distinct=args.dist, name=args.name)
-    
-    
-    # positive = t.nouns(args.positive)
-    # if (args.negative != ""):
-    #     negative = t.nouns(args.negative)
 
     print("\n\n")
 
@@ -42,27 +36,9 @@ if __name__ == "__main__":
         print("Predict lecture")
         pred = Predictor(name=args.name)
 
-        # if (args.token == 'Twitter'):
-        #     t = Twitter()
-        # elif (args.token == 'Mecab'):
-        #     t = Mecab()
-        # else:
-        #     print("No tokenizer")
-
-        # infile = open('corpus/vocab/name.txt', 'r')
-        # lectures = infile.readlines()
-        # for lecture in lectures:
-        #     token = lecture
-        #     if (args.token == "Twitter" or args.token == "Mecab"):
-        #         print("Using tokenizer: ", args.token)
-        #         token = t.nouns(lecture)
-        #     else:
-        #         print("Using tokenizer: Mecab")
-        #         t = Mecab()
-        #         token = t.nouns(lecture)
-        #     print(lecture, " | ", token, "\n", "-" * 80)
-        #     if (len(token) != 0):
-        #         print(pred.top_rank(positive=token, negative="", threshold=0))
-        #     else:
-        #         print("한글 단어 없음.")
-        #     print("\n")
+        lecture_file = open('data/lecture.txt', 'r')
+        lectures = lecture_file.readlines()
+        for l in lectures:
+            token = l.split()
+            top_10 = pred.top_rank(positive=token)
+            print(l, ":", top_10)

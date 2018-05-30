@@ -17,7 +17,7 @@ class Predictor:
         self.model = KeyedVectors.load_word2vec_format(name, binary=True)
         self.label = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     
-    def top_rank(self, positive, negative, threshold): 
+    def top_rank(self, positive, negative = "", threshold = 0): 
         """ top_rank function takes lecture name then find top 10 most similar using gensim library. If there exists lecture whichs similarity is under threshhold, then that lecture is thrown.
 
         Parameter
@@ -40,6 +40,13 @@ class Predictor:
                 lecture_list.append(lecture)
         
         return lecture_list
+
+    # def get_vector(self, positive, negative = ""):
+    #     p = positive.split()
+    #     if (negative != ""):
+    #         n = negative.split()
+        
+    #     result = 
 
     def predict(self, target, lectures, scores):
         """predict function takes lecture vector list and lecture score list. These lists are associated idx. Using 2 lists, first calculate distance between target and neighbors. Then using scikit-learn library, find score.
