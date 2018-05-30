@@ -19,7 +19,7 @@ if __name__ == "__main__":
     print("build:\t", args.build)
     print("vocab:\t", args.vocab)
     print("corpus:\t", args.corpus)
-    print("token:\t", args.token)
+    # print("token:\t", args.token)
     print("dist:\t", args.dist)
     print("pred:\t", args.pred)
     print("name:\t", args.name)
