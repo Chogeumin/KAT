@@ -13,6 +13,7 @@ if __name__ == "__main__":
     parser.add_argument('-d', "--dist", type=bool, default=False, help="vocab, corpus 구분 True/False")
     parser.add_argument('-p', "--pred", type=bool, default=False, help="예측기 사용 여부 True/False")
     parser.add_argument('-n', '--name', type=str, default='data/auto.bin', help="워드벡터 저장 위치 data/<binary file name>.bin")
+    parser.add_argument('-l', '--lecture', type=str, default="lectures.txt")
     args = parser.parse_args()
 
     print("\nparser statement")
@@ -36,7 +37,7 @@ if __name__ == "__main__":
         print("Predict lecture")
         pred = Predictor(name=args.name)
 
-        lecture_file = open('data/lecture.txt', 'r')
+        lecture_file = open(args.lecture, 'r')
         lectures = lecture_file.readlines()
         for l in lectures:
             token = l.split()
