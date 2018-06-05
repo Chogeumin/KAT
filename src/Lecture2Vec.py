@@ -51,18 +51,18 @@ class Lecture2Vec(object):
         if (distinct == True):
             vocab = MySentences(vocab)
             train = MySentences(corpus)
-
             model = Word2Vec(min_count=1)
+            
             model.build_vocab(sentences=vocab)
             model.train(sentences=train,
                         total_examples=model.corpus_count,
                         epochs=model.iter)
 
             word_vectors = model.wv
+
         elif (distinct == False):
             vocab = []
             train = MySentences(corpus)
-
             model = Word2Vec(sentences=train)
 
             word_vectors = model.wv
