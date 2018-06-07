@@ -14,15 +14,8 @@ if __name__ == "__main__":
     parser.add_argument('-t', '--threshold', type=float, default=0.0)
     args = parser.parse_args()
 
-    print("\nparser statement")
-    print("build:\t", args.build)
-    print("vocab:\t", args.vocab)
-    print("corpus:\t", args.corpus)
-    print("dist:\t", args.dist)
-    print("pred:\t", args.pred)
-    print("name:\t", args.name)
-    print("t.hold:\t", args.threshold)
-    print("\n")
+    for key in vars(args).keys():
+        print(key, ":", vars(args)[key])
 
     print("--- Result ---")
     if (args.build == True):
@@ -46,5 +39,5 @@ if __name__ == "__main__":
 
         for k in most_similars.keys():
             print(k)
-            print(most_similars[k][0])
+            print(most_similars[k])
             print("-" * 10)

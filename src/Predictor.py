@@ -68,7 +68,8 @@ class Predictor:
 
 
     def get_vector(self, words):
-        sum_vector = np.zeros(100, dtype=float)
+        vector_length = len(self.model.wv[words[0]])
+        sum_vector = np.zeros(vector_length, dtype=float)
         for word in words:
             sum_vector = np.add(sum_vector, self.model.wv[word])
 
@@ -83,11 +84,12 @@ class Predictor:
                 continue
             
             numerator = np.sum(np.multiply(target[1], lecture[1]))
-            denominator = np.sqrt(np.sum(np.multiply(target[1], target[1]))) * np.sqrt(np.sum(np.multiply(lecture[1], lecture[1])))
+            denominator = np.sqrt(np.sum(np.multiply(target[1], target[1])) * np.sum(np.multiply(lecture[1], lecture[1])))
             similarity = numerator / denominator
             
             if similarity > threshold:
-                result.append([lecture[0], lecture[1], similarity])
+                # result.append([lecture[0], similarity, lecture[1]])
+                result.append([lecture[0], similarity])
         
         result.sort(key=lambda x: x[1], reverse=True)
         

@@ -51,7 +51,8 @@ class Lecture2Vec(object):
         if (distinct == True):
             vocab = MySentences(vocab)
             train = MySentences(corpus)
-            model = Word2Vec(min_count=1)
+            model = Word2Vec(size=3,
+                            min_count=1)
             
             model.build_vocab(sentences=vocab)
             model.train(sentences=train,
