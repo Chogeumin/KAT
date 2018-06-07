@@ -107,10 +107,6 @@ ENV/
 .DS_Store
 
 # Unused folder
-parser/
 data/
 corpus/
-prac/
-log/
-test.py
-*.txt
+tmp/
