@@ -48,9 +48,12 @@ class Lecture2Vec(object):
             if distinct is 0, train corpus and vocabulary corpus is same.
 
         """
+
         if (distinct == True):
+            print("[L2V] Split")
             vocab = MySentences(vocab)
             train = MySentences(corpus)
+            print("[L2V] Train")
             model = Word2Vec(size=3,
                             min_count=1)
             
@@ -62,11 +65,14 @@ class Lecture2Vec(object):
             word_vectors = model.wv
 
         elif (distinct == False):
+            print("[L2V] Split")
             vocab = []
             train = MySentences(corpus)
+            print("[L2V] Train")
             model = Word2Vec(sentences=train)
 
             word_vectors = model.wv
 
         del vocab, train, model
+        print("[L2V] Save")
         word_vectors.save_word2vec_format(name, binary=True)

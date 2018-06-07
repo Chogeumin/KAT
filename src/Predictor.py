@@ -14,7 +14,7 @@ class Predictor:
             else, distinct is 0.
             
         """
-
+        print("[Pre] Load")
         self.model = KeyedVectors.load_word2vec_format(name, binary=True)
         self.label = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     
@@ -35,7 +35,7 @@ class Predictor:
 
         
         """
-
+        print("[Pre] Similar")
         lecture_list = []
         for lecture in self.model.most_similar(positive=positive, negative=negative):
             if (lecture[1] >= threshold):
@@ -59,6 +59,7 @@ class Predictor:
             lecture vector list
         
         """
+        print("[Pre] kNN")
         clf = neighbors.KNeighborsClassifier(n_neighbors=len(lectures), weights='distance')
         clf.fit(lectures, scores)
         
@@ -77,6 +78,7 @@ class Predictor:
     
 
     def most_similar(self, target, lectures, threshold):
+        print("[Pre] cosine similarity")
         result = []
         
         for lecture in lectures:
