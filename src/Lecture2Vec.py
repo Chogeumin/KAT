@@ -4,14 +4,10 @@ from gensim.models import KeyedVectors
 import os
 
 class MySentences(object):
-    """Read text files by lines from directory and return string list. string list isn't pos tagging just split sentence.
-
-    Parameters
-    ----------
-    dirname : str
-        folder path which contains text files. Default is "./"
-
     """
+    Read text files by lines from directory and return string list. string list isn't pos tagging just split sentence.
+    """
+    
     def __init__(self, dirname="./"):
         self.dirname = dirname
 
@@ -21,58 +17,26 @@ class MySentences(object):
                 yield line.split()
 
 class Lecture2Vec(object):
-    """Class for build lecture vector.
-        In this version, you can only build lecture vectors at Hanyang University ERICA campus(hyu, erica).
-
-        Parameters
-        ----------
-        university : str
-            University Abbreviation. Default is "hyu"
-
-        campus : str
-            Campus name. Default is "erica"
-
-
+    """
+    Class for build lecture vector.
+    In this version, you can only build lecture vectors at Hanyang University ERICA campus(hyu, erica).
     """
 
-    def build(self, vocab, corpus, distinct, name):
-        """Build lecture vector from corpus using word2vec in gensim library. corpus to make vocab and to train are different.
-        
-        Parameters
-        ----------
-        corpus : str
-            Corpus list used to train word2vec model
-
-        distinct : int
-            if distinct is 1, train corpus and vocabulary corpus is different.
-            if distinct is 0, train corpus and vocabulary corpus is same.
-
+    def build(self, vocab, corpus, name):
+        """
+        Build lecture vector from corpus using word2vec in gensim library. corpus to make vocab and to train are different.
         """
 
-        if (distinct == True):
-            print("[L2V] Split")
-            vocab = MySentences(vocab)
-            train = MySentences(corpus)
-            print("[L2V] Train")
-            model = Word2Vec(size=3,
-                            min_count=1)
-            
-            model.build_vocab(sentences=vocab)
-            model.train(sentences=train,
-                        total_examples=model.corpus_count,
-                        epochs=model.iter)
+        vocab = MySentences(vocab)
+        train = MySentences(corpus)
+        model = Word2Vec(size=100,
+                        min_count=1)
+        
+        model.build_vocab(sentences=vocab)
+        model.train(sentences=train,
+                    total_examples=model.corpus_count,
+                    epochs=model.iter)
 
-            word_vectors = model.wv
+        word_vectors = model.wv
 
-        elif (distinct == False):
-            print("[L2V] Split")
-            vocab = []
-            train = MySentences(corpus)
-            print("[L2V] Train")
-            model = Word2Vec(sentences=train)
-
-            word_vectors = model.wv
-
-        del vocab, train, model
-        print("[L2V] Save")
         word_vectors.save_word2vec_format(name, binary=True)

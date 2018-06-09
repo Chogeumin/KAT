@@ -5,35 +5,19 @@ import numpy as np
 
 class Predictor:
     def __init__(self, name):
-        """ Using Predictor class, you can get at most 10 top rank which is consine similiarty over threshold. Futhermore, can predict similar lecture using kNN
-
-        Parameter
-        ---------
-        distinct : int
-            if you build vector to use different model, then distinct is 1.
-            else, distinct is 0.
-            
         """
+        Using Predictor class, you can get at most 10 top rank which is consine similiarty over threshold. Futhermore, can predict similar lecture using kNN
+        """
+
         self.model = KeyedVectors.load_word2vec_format(name, binary=True)
         self.label = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     
 
     def top_rank(self, positive, negative = "", threshold = 0): 
-        """ top_rank function takes lecture name then find top 10 most similar using gensim library. If there exists lecture whichs similarity is under threshhold, then that lecture is thrown.
-
-        Parameter
-        ---------
-        positvie : list
-            source lecture name tokenized by Twitter.
-
-        negative : list
-            source lecture name tokenized by Twitter.
-
-        threshold : float
-            if cosin similarity is under than threshold, then it is regarded sparse similarity with source lecture.
-
-        
         """
+        top_rank function takes lecture name then find top 10 most similar using gensim library. If there exists lecture whichs similarity is under threshhold, then that lecture is thrown.
+        """
+
         lecture_list = []
         for lecture in self.model.most_similar(positive=positive, negative=negative):
             if (lecture[1] >= threshold):
@@ -43,21 +27,10 @@ class Predictor:
 
 
     def predict(self, target, lectures, scores):
-        """predict function takes lecture vector list and lecture score list. These lists are associated idx. Using 2 lists, first calculate distance between target and neighbors. Then using scikit-learn library, find score.
-
-        Parameter
-        ---------
-        target : list
-            target lecture vector
-
-        sroces : list
-            lecture scroe list
-
-        lectures : list
-            lecture vector list
-        
         """
-        print("[Pre] kNN")
+        predict function takes lecture vector list and lecture score list. These lists are associated idx. Using 2 lists, first calculate distance between target and neighbors. Then using scikit-learn library, find score.
+        """
+
         clf = neighbors.KNeighborsClassifier(n_neighbors=len(lectures), weights='distance')
         clf.fit(lectures, scores)
         

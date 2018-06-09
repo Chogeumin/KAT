@@ -7,7 +7,6 @@ if __name__ == "__main__":
     parser.add_argument('-b', "--build", type=bool, default=False, help="모델 제작 True/False")
     parser.add_argument('-v', "--vocab", type=str, default="", help="디렉토리 위치 corpus/<folder_name>")
     parser.add_argument('-c', "--corpus", type=str, default="", help="디렉토리 위치 corpus/<folder_name >")
-    parser.add_argument('-d', "--dist", type=bool, default=False, help="vocab, corpus 구분 True/False")
     parser.add_argument('-p', "--pred", type=bool, default=False, help="예측기 사용 여부 True/False")
     parser.add_argument('-n', '--name', type=str, default='data/auto.bin', help="워드벡터 저장 위치 data/<binary file name>.bin")
     parser.add_argument('-l', '--lecture', type=str, default="data/lectures.txt")
@@ -20,8 +19,8 @@ if __name__ == "__main__":
     print("--- Result ---")
     if (args.build == True):
         model = Lecture2Vec()
-        model.build(vocab=args.vocab, corpus=args.corpus, distinct=args.dist, name=args.name)
-
+        model.build(vocab=args.vocab, corpus=args.corpus, name=args.name)
+        
     if (args.pred == True):
         pred = Predictor(name=args.name)
 
