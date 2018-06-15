@@ -107,7 +107,7 @@ ENV/
 .DS_Store
 
 # Jupyter Notebook
-.ipynb
+*.ipynb
 
 # Unucommit folder
 data/
