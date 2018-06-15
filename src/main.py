@@ -12,8 +12,8 @@ import argparse, os
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', "--build", type=bool, default=False, help="모델 제작 True/False")
-    parser.add_argument('-v', "--vocab", type=str, default="", help="디렉토리 위치 corpus/<folder_name>")
-    parser.add_argument('-c', "--corpus", type=str, default="", help="디렉토리 위치 corpus/<folder_name >")
+    parser.add_argument('-v', "--vocab", type=str, default="data/vocab/", help="디렉토리 위치 corpus/<folder_name>")
+    parser.add_argument('-c', "--corpus", type=str, default="corpus/", help="디렉토리 위치 corpus/<folder_name >")
     parser.add_argument('-p', "--pred", type=bool, default=False, help="예측기 사용 여부 True/False")
     parser.add_argument('-n', '--name', type=str, default='data/auto.bin', help="워드벡터 저장 위치 data/<binary file name>.bin")
     parser.add_argument('-l', '--lecture', type=str, default="data/lectures.txt")
