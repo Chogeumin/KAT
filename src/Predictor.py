@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from gensim.models import KeyedVectors
 from sklearn import neighbors
 from sklearn.metrics.pairwise import cosine_similarity

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Lecture2Vec import Lecture2Vec
 from Predictor import Predictor
 
