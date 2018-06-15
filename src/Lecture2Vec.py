@@ -32,12 +32,10 @@ class Lecture2Vec(object):
         model = Word2Vec(size=100,
                         min_count=1)
         
-        model.build_vocab(sentences=vocab,
-                          encoding='utf-8')
+        model.build_vocab(sentences=vocab)
         model.train(sentences=train,
                     total_examples=model.corpus_count,
-                    epochs=model.iter,
-                    encoding='utf-8')
+                    epochs=model.iter)
 
         word_vectors = model.wv
 
